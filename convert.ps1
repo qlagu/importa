@@ -1,0 +1,1 @@
+./build/convert_compile_commands.exe
