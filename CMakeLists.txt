@@ -101,11 +101,11 @@ target_link_libraries(tests_executor
         stdx
 )
 
-add_executable(tests_moduleProcessor
-    tests/moduleProcessor.cpp
+add_executable(tests_module_processor
+    tests/module_processor.cpp
 )
-target_link_libraries(tests_moduleProcessor 
-    PRIVATE 
+target_link_libraries(tests_module_processor
+    PRIVATE
         module_processor
         executor
         toolchains
@@ -131,6 +131,7 @@ add_utf8_options_to_target(executor)
 add_utf8_options_to_target(tests)
 add_utf8_options_to_target(tests_toolchains)
 add_utf8_options_to_target(tests_executor)
+add_utf8_options_to_target(tests_module_processor)
 add_utf8_options_to_target(convert_compile_commands)
 add_utf8_options_to_target(module_processor)
 
