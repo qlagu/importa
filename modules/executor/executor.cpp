@@ -21,8 +21,7 @@ module executor;
 
 import std;
 
-namespace importa
-{
+using namespace importa::executor;
 
 // --- Command ---
 std::string Command::to_string() const
@@ -168,5 +167,3 @@ ExecutionResult LocalExecutor::execute(const Command& command)
     result.std_err = std_err;
     return result;
 }
-
-} // namespace importa

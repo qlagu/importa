@@ -3,7 +3,7 @@ import executor;
 import std;
 
 // Use using directive to simplify test code
-using namespace importa;
+using namespace importa::executor;
 namespace fs = std::filesystem;
 
 // --- Unit Tests ---

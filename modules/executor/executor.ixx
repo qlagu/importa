@@ -16,6 +16,9 @@ namespace importa
 
 namespace fs = std::filesystem;
 
+namespace executor
+{
+
 // Export this struct specifically.
 export struct Command
 {
@@ -67,5 +70,5 @@ export class DryRunExecutor final : public IExecutor
   private:
     std::ostream& m_output_stream;
 };
-
+} // namespace executor
 } // namespace importa
