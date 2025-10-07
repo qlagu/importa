@@ -1,3 +1,0 @@
-CompileFlags:
-  CompilationDatabase: .
-  Add: [-fms-extensions, -fms-compatibility, -fms-compatibility-version=19]

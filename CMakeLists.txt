@@ -34,10 +34,13 @@ target_sources(toolchains
         TYPE CXX_MODULES
         FILES
             modules/toolchains/toolchains.ixx
+    PRIVATE
+        modules/toolchains/toolchains.cpp
 )
 target_link_libraries(toolchains 
     PUBLIC
         stdx
+        executor
 )
 
 add_library(executor STATIC)
@@ -52,6 +55,22 @@ target_sources(executor
 target_link_libraries(executor 
     PUBLIC 
         stdx
+)
+
+add_library(module_processor STATIC)
+target_sources(module_processor
+    PUBLIC
+        FILE_SET CXX_MODULES
+        FILES
+            modules/module_processor/module_processor.ixx
+    PRIVATE
+        modules/module_processor/module_processor.cpp
+)
+target_link_libraries(module_processor
+    PUBLIC 
+        stdx
+        executor
+        toolchains
 )
 # tests
 
@@ -68,6 +87,7 @@ add_executable(tests_toolchains
 )
 target_link_libraries(tests_toolchains 
     PRIVATE 
+        executor
         toolchains
         stdx
 )
@@ -81,9 +101,21 @@ target_link_libraries(tests_executor
         stdx
 )
 
+add_executable(tests_moduleProcessor
+    tests/moduleProcessor.cpp
+)
+target_link_libraries(tests_moduleProcessor 
+    PRIVATE 
+        module_processor
+        executor
+        toolchains
+        stdx
+)
+
 # 将msvc风格的compile_commands.json转为clangd风格的工具
 add_executable(convert_compile_commands
-    tools/convert_compile_commands.cpp
+    #tools/convert_compile_commands.cpp
+    tools/impa_gen.cpp
 )
 
 # 为所有目标统一添加 /utf-8 选项
@@ -100,4 +132,5 @@ add_utf8_options_to_target(tests)
 add_utf8_options_to_target(tests_toolchains)
 add_utf8_options_to_target(tests_executor)
 add_utf8_options_to_target(convert_compile_commands)
+add_utf8_options_to_target(module_processor)
 
